@@ -1,7 +1,8 @@
 import datetime
 
-def cal_data(start_year=1920, years_limit=100):
+def cal_data(start_year=1920, years_limit=100, need='all'):
     data = {'days': [], 'month_names': [], 'years': []}
+    accepted_needs = ['days','month_names','years']
     for i in range(1,13):
         data['days'].append(('day-' + str(i),str(i)))
         
@@ -21,6 +22,12 @@ def cal_data(start_year=1920, years_limit=100):
     
     for y in range(start_year, start_year + years_limit):
         data['years'].append(('year-' + str(y), str(y)))
-    return data
+    
+    if need in accepted_needs:
+        return data[need]
+    else:
+        return data
 
-print(cal_data(start_year=1801, years_limit=200)['years'])
+print(cal_data(start_year=1801, years_limit=200,need='days'))
+print(cal_data(start_year=1801, years_limit=200,need='month_names'))
+print(cal_data(start_year=1801, years_limit=200,need='years'))
